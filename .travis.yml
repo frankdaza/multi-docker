@@ -21,3 +21,16 @@ after_success:
   - docker push frankdaza2/multi-nginx
   - docker push frankdaza2/multi-server
   - docker push frankdaza2/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket-name: elasticbeanstalk-us-east-2-877403824238
+  bucket-path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
